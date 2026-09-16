@@ -19,6 +19,7 @@
     <div class="label">shared=</div><div class="val" id="r-shared"></div>
     <div class="label">keys</div><div class="val" id="r-keys"></div>
     <div class="label">file</div><div class="val" id="r-file"></div>
+    <div class="label">تم الاسترجاع اليدوي؟</div><div class="val" id="r-recovered"></div>
     <div class="label">error</div><div class="val" id="r-err"></div>
   </div>
   <div class="box" id="sw-status">جاري تسجيل Service Worker...</div>
@@ -40,6 +41,7 @@ if (p.get('shared') === '1') {
   document.getElementById('r-shared').textContent = p.get('shared') || '';
   document.getElementById('r-keys').textContent = p.get('keys') || '';
   document.getElementById('r-file').textContent = p.get('file') || '';
+  document.getElementById('r-recovered').textContent = p.get('recovered') || 'لا';
   document.getElementById('r-err').textContent = p.get('err') || '(لا يوجد)';
 }
 </script>
