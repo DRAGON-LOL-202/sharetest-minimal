@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Share Test</title>
+<link rel="manifest" href="./manifest.json">
+<style>
+  body { font-family: sans-serif; background:#0a0e1a; color:#fff; padding:20px; direction:rtl; }
+  .box { background:#111726; border:1px solid #2a3550; border-radius:10px; padding:16px; margin-top:16px; }
+  .label { color:#9fb3d9; font-size:13px; }
+  .val { font-size:16px; margin-bottom:10px; word-break:break-all; }
+</style>
+</head>
+<body>
+  <h2>اختبار Share Target البسيط</h2>
+  <p>ده تطبيق اختبار مبسّط (من غير أي كود إضافي) عشان نتأكد هل الملف بيوصل فعليًا من نظام المشاركة أو لأ.</p>
+  <div id="result" class="box" style="display:none;">
+    <div class="label">shared=</div><div class="val" id="r-shared"></div>
+    <div class="label">keys</div><div class="val" id="r-keys"></div>
+    <div class="label">file</div><div class="val" id="r-file"></div>
+    <div class="label">error</div><div class="val" id="r-err"></div>
+  </div>
+  <div class="box" id="sw-status">جاري تسجيل Service Worker...</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./sw.js').then(() => {
+    document.getElementById('sw-status').textContent = 'Service Worker مسجّل بنجاح ✅';
+  }).catch((e) => {
+    document.getElementById('sw-status').textContent = 'فشل تسجيل Service Worker: ' + e.message;
+  });
+} else {
+  document.getElementById('sw-status').textContent = 'المتصفح ده مش بيدعم Service Worker';
+}
+
+const p = new URLSearchParams(location.search);
+if (p.get('shared') === '1') {
+  document.getElementById('result').style.display = 'block';
+  document.getElementById('r-shared').textContent = p.get('shared') || '';
+  document.getElementById('r-keys').textContent = p.get('keys') || '';
+  document.getElementById('r-file').textContent = p.get('file') || '';
+  document.getElementById('r-err').textContent = p.get('err') || '(لا يوجد)';
+}
+</script>
+</body>
+</html>

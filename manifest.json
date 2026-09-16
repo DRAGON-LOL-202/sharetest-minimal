@@ -1,0 +1,28 @@
+{
+  "name": "Share Test",
+  "short_name": "ShareTest",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e64dc",
+  "icons": [
+    { "src": "./assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "share_target": {
+    "action": "./index.html",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "files": [
+        {
+          "name": "sharedFile",
+          "accept": ["image/*", ".jpg", ".jpeg", ".png", ".dxf", "application/octet-stream", "*/*"]
+        }
+      ]
+    }
+  }
+}
